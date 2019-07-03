@@ -1,0 +1,28 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t jibolaolu/react-test -f ./client/Dockerfile.dev ./client
+
+language: generic
+
+script:
+  - docker run jibolaolu/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t jibolaolu/multee-client ./client
+  - docker build -t jibolaolu/multee-nginx ./nginx
+  - docker build -t jibolaolu/multee-server ./server
+  - docker build -t jibolaolu/multee-worker ./worker
+
+
+#Log into Docker CLI
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+#Take Images to Docker hub
+  - docker push jibolaolu/multee-client
+  - docker push jibolaolu/multee-nginx
+  - docker push jibolaolu/multee-server
+  - docker push jibolaolu/multee-worker
