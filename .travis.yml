@@ -27,7 +27,7 @@ after_success:
   - docker push jibolaolu/multee-server
   - docker push jibolaolu/multee-worker
 
-
+#deployment script
 deploy:
   provider: elasticbeanstalk
   region: "eu-west-2"
