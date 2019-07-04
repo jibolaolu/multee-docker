@@ -5,19 +5,25 @@
     "name": "client",
     "image": "jibolaolu/multee-client",
     "hostname": "client",
-    "essential": false
+    "essential": false,
+    "memory": 128
+
   },
  {
    "name": "server",
    "image": "jibolaolu/multee-server",
    "hostname": "api",
-   "essential": false
+   "essential": false,
+   "memory": 128
+
  },
  {
    "name": "worker",
    "image": "jibolaolu/multee-worker",
    "hostname": "worker",
-   "essential": false
+   "essential": false,
+   "memory": 128
+
  },
  {
    "name": "nginx",
@@ -31,7 +37,9 @@
      }
   ],
 
-  "links": ["client", "server"]
+  "links": ["client", "server"],
+  "memory": 128
+
   }
  ]
 }
