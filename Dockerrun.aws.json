@@ -1,0 +1,37 @@
+{
+"AWSEBDockerrunVersion": 2,
+"containerDefinitions": [
+  {
+    "name": "client",
+    "image": "jibolaolu/multee-client",
+    "hostname": "client",
+    "essential": false
+  },
+ {
+   "name": "server",
+   "image": "jibolaolu/multee-server",
+   "hostname": "api",
+   "essential": false
+ },
+ {
+   "name": "worker",
+   "image": "jibolaolu/multee-worker",
+   "hostname": "worker",
+   "essential": false
+ },
+ {
+   "name": "nginx",
+   "image": "jibolaolu/multee-nginx",
+   "hostname": "nginx",
+   "essential": true,
+   "portMappings": [
+     {
+       "hostPort": 80,
+       "containerPort": 80
+     }
+  ],
+
+  "links": ["client", "server"]
+  }
+ ]
+}
